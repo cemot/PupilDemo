@@ -23,14 +23,14 @@ def on_network_event(network, event):
 
         # Save sensor s.t. we can fetch data from it in main()
         SENSORS[event["sensor_uuid"]] = sensor
-        print(f"Added sensor {sensor}...")
+        #print(f"Added sensor {sensor}...")
 
     # Handle gaze sensor detachment
     if event["subject"] == "detach" and event["sensor_uuid"] in SENSORS:
         # Known sensor has disconnected, remove from list
         SENSORS[event["sensor_uuid"]].unlink()
         del SENSORS[event["sensor_uuid"]]
-        print(f"Removed sensor {event['sensor_uuid']}...")
+        #print(f"Removed sensor {event['sensor_uuid']}...")
         
         
 def init_network():

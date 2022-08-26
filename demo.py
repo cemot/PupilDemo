@@ -8,7 +8,6 @@ import sys
 import cv2
 import numpy as np
 
-from heatmappy import Heatmapper
 from PIL import Image
 
 # https://github.com/pupil-labs/pyndsi/tree/v1.0
@@ -132,15 +131,6 @@ def main():
             if key == ord("q"):
                 frame = cv2.cvtColor(aruco_img, cv2.COLOR_BGR2RGB)
                 pil_img = Image.fromarray(frame)
- 
-                heatmapper = Heatmapper()
-                heatmap = heatmapper.heatmap_on_img(gazes, pil_img)
-                heatmap = np.array(heatmap)
-                
-                heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
-
-                cv2.imshow("window", heatmap)
-                key = cv2.waitKey(0)
             
                 network.stop()
                 return projective_matrix
@@ -148,15 +138,6 @@ def main():
             elif key == ord("w"):
                 frame = cv2.cvtColor(aruco_img, cv2.COLOR_BGR2RGB)
                 pil_img = Image.fromarray(frame)
- 
-                heatmapper = Heatmapper()
-                heatmap = heatmapper.heatmap_on_img(gazes, pil_img)
-                heatmap = np.array(heatmap)
-                
-                heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
-                cv2.imwrite("./outs/"+imgs[img_idx], heatmap)
-                cv2.imshow("window", heatmap)
-                cv2.waitKey(0)
                              
                 img_idx = img_idx - 1
                 if img_idx < 0:
@@ -170,12 +151,7 @@ def main():
             elif key == ord("e"):
                 frame = cv2.cvtColor(aruco_img, cv2.COLOR_BGR2RGB)
                 pil_img = Image.fromarray(frame)
- 
-                heatmapper = Heatmapper()
-                heatmap = heatmapper.heatmap_on_img(gazes, pil_img)
-                heatmap = np.array(heatmap)
                 
-                heatmap = cv2.cvtColor(heatmap, cv2.COLOR_RGB2BGR)
                 cv2.imwrite("./outs/"+imgs[img_idx], heatmap)
                 cv2.imshow("window", heatmap)
                 cv2.waitKey(0)
